@@ -8,15 +8,13 @@ import { Router } from '@angular/router';
 
 export class CreateEventComponent {
     event: any;
+    isDirty:boolean = false;
 
-    constructor(
-        @Inject(Router) private router:Router
-    ) { }
+    constructor(@Inject(Router) private router:Router){}
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     cancel(){
-        this.router.navigate(['/events']);
+        this.router.navigate(['/events']);       
     }
 }
