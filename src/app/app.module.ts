@@ -12,11 +12,12 @@ import { appRoutes } from "src/routes";
 import { CreateEventComponent } from "./events/create-event.component";
 import { Error404Component } from "./errors/404.component";
 import { EventRouteActivator } from "./events/event-route.activator.service";
-import { EventListResolver } from "./events/events-list-resolve.service";
+import { EventsListResolver } from "./events/events-list-resolve.service";
 
 @NgModule({
-  imports: [
+  imports: [  
     BrowserModule,
+    //RouterModule.forRoot(appRoutes)
     RouterModule.forRoot(appRoutes, { enableTracing: true })
   ],
   declarations: [
@@ -32,7 +33,7 @@ import { EventListResolver } from "./events/events-list-resolve.service";
     EventService,
     ToastrService,
     EventRouteActivator,
-    EventListResolver,
+    EventsListResolver,
     { provide: "canDeactivateCreateEvent", useValue: checkDirtyState }
   ],
   bootstrap: [EventsAppComponent]
