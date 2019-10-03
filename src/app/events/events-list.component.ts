@@ -12,14 +12,15 @@ export class EventsListComponent implements OnInit {
   constructor(
     @Inject(EventService) private eventService: EventService,
     @Inject(ToastrService) private toastr: ToastrService,
-    @Inject(ActivatedRoute) private route: ActivatedRouteSnapshot
+    @Inject(ActivatedRoute) private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
-    console.log('this.route ', this.route);
-    console.log('this.route.snapshot.data ', this.route.data['events']);
-    
-    this.events = this.route.data['events'];
+    //console.log('EventsListComponent');
+    //console.log('this.route ', this.route);
+    //console.log('this.route.snapshot.data ', this.route.data['events']);   
+    this.events = this.route.snapshot.data['events'];
+
   }
 
   handleThumbnailClick(eventName) {

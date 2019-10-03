@@ -23,7 +23,7 @@ export class EventDetailComponent {
         @Inject(ActivatedRoute) private route:ActivatedRoute
     ) { }
 
-    ngOnInit() {
+    ngOnInit() { 
         console.log('routeId: ', this.route.snapshot.params['id']);        
         this.event = this.eventService.getEventById(+this.route.snapshot.params['id']);
     }

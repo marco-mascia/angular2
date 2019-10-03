@@ -20,8 +20,7 @@ export class EventRouteActivator implements CanActivate {
   constructor(
     @Inject(EventService) private eventService: EventService,
     @Inject(Router) private router: Router
-  ) {
-  }
+  ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {     
     //Check if event exist searching by id

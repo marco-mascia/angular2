@@ -1,6 +1,7 @@
 
 import { Injectable } from '@angular/core'
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, of } from 'rxjs';
+import { delay } from 'rxjs/internal/operators/delay';
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +9,14 @@ import { Subject, Observable } from 'rxjs';
 export class EventService {
 
    
-  getEvents():Observable<any> {
-    let subject = new Subject<any>();    
+  getEvents():Observable<any[]> {
+    let subject = new Subject<any[]>();    
     setTimeout(() => {
       subject.next(EVENTS);
       subject.complete;
     }, 2000);
 
-    return subject;
+    return subject;     
   }
 
   getEventById(id: number) {
