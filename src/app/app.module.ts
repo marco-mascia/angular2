@@ -14,11 +14,12 @@ import { Error404Component } from "./errors/404.component";
 import { EventRouteActivator } from "./events/event-route.activator.service";
 import { EventsListResolver } from "./events/events-list-resolve.service";
 
+
 @NgModule({
   imports: [  
     BrowserModule,
-    //RouterModule.forRoot(appRoutes)
-    RouterModule.forRoot(appRoutes, { enableTracing: true })
+    RouterModule.forRoot(appRoutes)    
+    //RouterModule.forRoot(appRoutes, { enableTracing: true }) //debug
   ],
   declarations: [
     EventsAppComponent,
