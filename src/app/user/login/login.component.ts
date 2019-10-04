@@ -26,7 +26,6 @@ export class LoginComponent {
   mouseoverLogin;
 
   login(formValues) {
-    debugger;
     this.authService.loginUser(formValues.userName, formValues.password);
     this.router.navigate(["events"]);
   }
