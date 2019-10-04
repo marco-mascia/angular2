@@ -5,7 +5,8 @@ import { FormControl, Validators, FormGroup } from "@angular/forms";
 import { ISession } from "../shared";
 
 @Component({
-  templateUrl: "./create-session.component.html"
+  templateUrl: "./create-session.component.html",
+  styleUrls: ["./create-session.component.css"]
 })
 export class CreateSessionComponent implements OnInit {
   constructor(
