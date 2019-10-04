@@ -1,4 +1,5 @@
 export * from "./create-event/create-event.component";
+export * from "./create-session-component/create-session.component";
 export * from "./event-thumbnail.component";
 export * from "./events-list.component";
 export * from "./events-list-resolve.service";

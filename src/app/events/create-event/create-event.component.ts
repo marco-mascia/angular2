@@ -9,7 +9,7 @@ import { EventService } from "../shared";
   styleUrls: ["./create-event.component.css"]
 })
 export class CreateEventComponent {
-  isDirty: boolean = false;
+  isDirty: boolean = true;
   newEvent: IEvent;
 
   constructor(
