@@ -20,14 +20,14 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     //fields
-    this.firstName = new FormControl(
-      this.authService.currentUser.firstName,
-      Validators.required
-    );
-    this.lastName = new FormControl(
-      this.authService.currentUser.lastName,
-      Validators.required
-    );
+    this.firstName = new FormControl(this.authService.currentUser.firstName, [
+      Validators.required,
+      Validators.pattern("[a-zA-Z].*")
+    ]);
+    this.lastName = new FormControl(this.authService.currentUser.lastName, [
+      Validators.required,
+      Validators.pattern("[a-zA-Z].*")
+    ]);
 
     //fields group
     this.profileForm = new FormGroup({
@@ -51,9 +51,9 @@ export class ProfileComponent implements OnInit {
   }
 
   validateLastName() {
-    return this.lastName.valid && this.lastName.untouched;
+    return this.lastName.valid || this.lastName.untouched;
   }
   validateFirstName() {
-    return this.firstName.valid && this.firstName.untouched;
+    return this.firstName.valid || this.firstName.untouched;
   }
 }
