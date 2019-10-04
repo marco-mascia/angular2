@@ -29,7 +29,7 @@ export class CreateSessionComponent implements OnInit {
     this.abstract = new FormControl("", [
       Validators.required,
       Validators.maxLength(400),
-      this.restrictedWords
+      this.restrictedWords(["foo", "bar"])
     ]);
 
     this.newSessionForm = new FormGroup({
@@ -57,7 +57,17 @@ export class CreateSessionComponent implements OnInit {
   /**
    * custom validator function
    */
-  private restrictedWords(control: FormControl): { [key: string]: any } {
-    return control.value.includes("foo") ? { restrictedWords: "foo" } : null;
+  private restrictedWords(words) {
+    return (control: FormControl): { [key: string]: any } => {
+      if (!words) return null;
+
+      var invalidWords = words
+        .map(word => (control.value.includes(word) ? word : null))
+        .filter(word => word != null);
+
+      return control.value.includes("foo")
+        ? { restrictedWords: invalidWords.join(", ") }
+        : null;
+    };
   }
 }
