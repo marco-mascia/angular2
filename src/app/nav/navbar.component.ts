@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { AuthService } from '../user/auth.service';
 
 @Component({
   selector: 'nav-bar',
@@ -7,11 +8,14 @@ import { Component } from '@angular/core';
     .nav.navbar-nav { font-size: 15px; }
     #searchForm { margin-right: 100px; }
     li > a.active { color: #F97924; }
-
   `]
   
 })
 
 export class NavbarComponent {
+
+  constructor(@Inject(AuthService) private authService:AuthService){
+    
+  }
    
 }
