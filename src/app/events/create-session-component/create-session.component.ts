@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from "@angular/core";
 import { EventService } from "../shared/event.service";
 import { ActivatedRoute } from "@angular/router";
 import { FormControl, Validators, FormGroup } from "@angular/forms";
-import { ISession } from "../shared";
+import { ISession, restrictedWords } from "../shared";
 
 @Component({
   templateUrl: "./create-session.component.html",
@@ -29,7 +29,7 @@ export class CreateSessionComponent implements OnInit {
     this.abstract = new FormControl("", [
       Validators.required,
       Validators.maxLength(400),
-      this.restrictedWords(["foo", "bar"])
+      restrictedWords(["foo", "bar"])
     ]);
 
     this.newSessionForm = new FormGroup({
@@ -52,22 +52,5 @@ export class CreateSessionComponent implements OnInit {
       voters: []
     };
     console.log("session ", session);
-  }
-
-  /**
-   * custom validator function
-   */
-  private restrictedWords(words) {
-    return (control: FormControl): { [key: string]: any } => {
-      if (!words) return null;
-
-      var invalidWords = words
-        .map(word => (control.value.includes(word) ? word : null))
-        .filter(word => word != null);
-
-      return control.value.includes("foo")
-        ? { restrictedWords: invalidWords.join(", ") }
-        : null;
-    };
   }
 }
