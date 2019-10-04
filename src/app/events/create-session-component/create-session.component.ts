@@ -28,7 +28,8 @@ export class CreateSessionComponent implements OnInit {
     this.level = new FormControl("", Validators.required);
     this.abstract = new FormControl("", [
       Validators.required,
-      Validators.maxLength(400)
+      Validators.maxLength(400),
+      this.restrictedWords
     ]);
 
     this.newSessionForm = new FormGroup({
@@ -51,5 +52,12 @@ export class CreateSessionComponent implements OnInit {
       voters: []
     };
     console.log("session ", session);
+  }
+
+  /**
+   * custom validator function
+   */
+  private restrictedWords(control: FormControl): { [key: string]: any } {
+    return control.value.includes("foo") ? { restrictedWords: "foo" } : null;
   }
 }
