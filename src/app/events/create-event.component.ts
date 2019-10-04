@@ -1,5 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Router } from '@angular/router';
+import { IEvent } from './shared';
 
 @Component({
     selector: 'create-event',
@@ -7,7 +8,7 @@ import { Router } from '@angular/router';
 })
 
 export class CreateEventComponent {
-    event: any;
+    event:IEvent;
     isDirty:boolean = false;
 
     constructor(@Inject(Router) private router:Router){}
