@@ -20,6 +20,7 @@ export class LoginComponent {
     
     userName
     password
+    mouseoverLogin
     
     login(formValues){
         this.authService.loginUser(formValues.userName, formValues.password);        
