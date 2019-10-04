@@ -4,21 +4,27 @@ import { NavbarComponent } from "./nav/navbar.component";
 import { ToastrService } from "./common/toastr.service";
 import { RouterModule } from "@angular/router";
 import { appRoutes } from "src/routes";
-import { CreateEventComponent } from "./events/create-event.component";
+
 import { Error404Component } from "./errors/404.component";
-import {EventDetailComponent, 
-        EventService, 
-        EventThumbnailComponent, 
-        EventsListComponent,  
-        EventsListResolver, 
-        EventRouteActivator } from './events/index'
-import { EventsAppComponent } from './events-app.component';
-import { AuthService } from './user/auth.service';
+import {
+  EventDetailComponent,
+  EventService,
+  EventThumbnailComponent,
+  EventsListComponent,
+  EventsListResolver,
+  EventRouteActivator,
+  CreateEventComponent
+} from "./events/index";
+import { EventsAppComponent } from "./events-app.component";
+import { AuthService } from "./user/auth.service";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 @NgModule({
-  imports: [  
+  imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes)    
+    RouterModule.forRoot(appRoutes),
+    FormsModule,
+    ReactiveFormsModule
     //RouterModule.forRoot(appRoutes, { enableTracing: true }) //debug
   ],
   declarations: [
