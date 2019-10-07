@@ -11,7 +11,7 @@ import { Router } from "@angular/router";
 })
 
 /**
- * 
+ *
  * Redirects on 404 if the event id doesn't exist
  * es:  http://localhost:4200/events/1 -> event exists, no problem.
  *      http://localhost:4200/events/999 -> ERROR, go to to 404
@@ -22,12 +22,16 @@ export class EventRouteActivator implements CanActivate {
     @Inject(Router) private router: Router
   ) {}
 
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {     
+  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     //Check if event exist searching by id
-    const eventExists = !!this.eventService.getEventById(+route.params['eventId']);
-    
+
+    const eventExists = !!this.eventService.getEventById(
+      +route.params["eventId"]
+    );
+    debugger;
+
     if (!eventExists) {
-      this.router.navigate(['/404']);
+      this.router.navigate(["/404"]);
       return false;
     }
     return true;
