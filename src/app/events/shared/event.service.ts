@@ -24,10 +24,14 @@ export class EventService {
   }
 
   getEventById(id: number): IEvent {
-    console.log("EventService -> getEventById: ", id);
     let evt = EVENTS.find(event => event.id === id);
     console.log("evt ", evt);
     return evt;
+  }
+
+  updateEvent(event) {
+    let index = EVENTS.findIndex(x => (x.id = event.id));
+    EVENTS[index] = event;
   }
 }
 

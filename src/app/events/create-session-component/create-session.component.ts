@@ -1,10 +1,11 @@
-import { Component, Inject, OnInit } from "@angular/core";
+import { Component, Inject, OnInit, Output, EventEmitter } from "@angular/core";
 import { EventService } from "../shared/event.service";
 import { ActivatedRoute } from "@angular/router";
 import { FormControl, Validators, FormGroup } from "@angular/forms";
 import { ISession, restrictedWords } from "../shared";
 
 @Component({
+  selector: "create-session",
   templateUrl: "./create-session.component.html",
   styleUrls: ["./create-session.component.css"]
 })
@@ -13,6 +14,9 @@ export class CreateSessionComponent implements OnInit {
     @Inject(EventService) private eventService: EventService,
     @Inject(ActivatedRoute) private route: ActivatedRoute
   ) {}
+
+  @Output() saveNewSession = new EventEmitter();
+  @Output() cancelAddSession = new EventEmitter();
 
   newSessionForm: FormGroup;
   name: FormControl;
@@ -51,6 +55,11 @@ export class CreateSessionComponent implements OnInit {
       abstract: formValues.abstract,
       voters: []
     };
-    console.log("session ", session);
+    this.saveNewSession.emit(session);
+    //console.log("session ", session);
+  }
+
+  cancel() {
+    this.cancelAddSession.emit();
   }
 }
