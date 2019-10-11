@@ -2,6 +2,7 @@ import { BrowserModule } from "@angular/platform-browser";
 import { NgModule } from "@angular/core";
 import { NavbarComponent } from "./nav/navbar.component";
 import { ToastrService } from "./common/toastr.service";
+import { CollapsibleWellComponent } from "./common/collapsible-well-component/collapsible-well.component";
 import { RouterModule } from "@angular/router";
 import { appRoutes } from "src/routes";
 
@@ -38,7 +39,8 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     CreateEventComponent,
     Error404Component,
     CreateSessionComponent,
-    SessionListComponent
+    SessionListComponent,
+    CollapsibleWellComponent
   ],
   providers: [
     EventService,

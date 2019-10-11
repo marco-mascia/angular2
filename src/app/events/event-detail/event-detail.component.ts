@@ -29,8 +29,9 @@ export class EventDetailComponent {
     @Inject(ActivatedRoute) private route: ActivatedRoute
   ) {}
 
+  // tslint:disable-next-line: use-lifecycle-interface
   ngOnInit() {
-    console.log("routeId: ", this.route.snapshot.params["eventId"]);
+    console.log('routeId: ', this.route.snapshot.params["eventId"]);
     this.event = this.eventService.getEventById(
       +this.route.snapshot.params["eventId"]
     );
