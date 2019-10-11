@@ -6,13 +6,11 @@ import { Component, Inject, Input } from "@angular/core";
   styleUrls: ['./collapsible-well.component.css']
 })
 export class CollapsibleWellComponent {
-  @Input() title: string;
   visible: boolean = true;
 
   constructor() {}
 
-  toggleContent() {
-      debugger;
+  toggleContent() {      
     this.visible = !this.visible;
   }
 
