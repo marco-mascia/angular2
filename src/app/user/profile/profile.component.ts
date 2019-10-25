@@ -1,35 +1,38 @@
-import { Component, OnInit, Inject } from "@angular/core";
-import { FormControl, FormGroup, Validators } from "@angular/forms";
-import { AuthService } from "../auth.service";
-import { Router } from "@angular/router";
+import { Component, OnInit, Inject } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
+import { TOASTR_TOKEN, Toastr } from 'src/app/common/toastr.service';
+
 
 @Component({
-  templateUrl: "./profile.component.html",
-  styleUrls: ["./profile.component.css"]
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
-
-  constructor(
-    @Inject(AuthService) private authService: AuthService,
-    @Inject(Router) private router: Router
-  ) {}
-
   private firstName: FormControl;
   private lastName: FormControl;
 
+  constructor(
+    @Inject(AuthService) private authService: AuthService,
+    @Inject(Router) private router: Router,
+    @Inject(TOASTR_TOKEN) private toastr: Toastr
+  ) {}
+
+
   ngOnInit() {
-    //fields
+    // fields
     this.firstName = new FormControl(this.authService.currentUser.firstName, [
       Validators.required,
-      Validators.pattern("[a-zA-Z].*")
+      Validators.pattern('[a-zA-Z].*')
     ]);
     this.lastName = new FormControl(this.authService.currentUser.lastName, [
       Validators.required,
-      Validators.pattern("[a-zA-Z].*")
+      Validators.pattern('[a-zA-Z].*')
     ]);
 
-    //fields group
+    // fields group
     this.profileForm = new FormGroup({
       firstName: this.firstName,
       lastName: this.lastName
@@ -37,7 +40,7 @@ export class ProfileComponent implements OnInit {
   }
 
   cancel() {
-    this.router.navigate(["events"]);
+    this.router.navigate(['events']);
   }
 
   saveProfile(formValues) {
@@ -46,7 +49,8 @@ export class ProfileComponent implements OnInit {
         formValues.firstName,
         formValues.lastName
       );
-      this.router.navigate(["events"]);
+      this.toastr.success('Profile Saved');
+      //this.router.navigate(['events']);
     }
   }
 

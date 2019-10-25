@@ -1,12 +1,12 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { NavbarComponent } from "./nav/navbar.component";
-import { ToastrService } from "./common/toastr.service";
-import { CollapsibleWellComponent } from "./common/collapsible-well-component/collapsible-well.component";
-import { RouterModule } from "@angular/router";
-import { appRoutes } from "src/routes";
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { NavbarComponent } from './nav/navbar.component';
+import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
+import { CollapsibleWellComponent } from './common/collapsible-well-component/collapsible-well.component';
+import { RouterModule } from '@angular/router';
+import { appRoutes } from 'src/routes';
 
-import { Error404Component } from "./errors/404.component";
+import { Error404Component } from './errors/404.component';
 import {
   EventDetailComponent,
   EventService,
@@ -16,11 +16,14 @@ import {
   EventRouteActivator,
   CreateEventComponent,
   CreateSessionComponent,
-  SessionListComponent
-} from "./events/index";
-import { EventsAppComponent } from "./events-app.component";
-import { AuthService } from "./user/auth.service";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+  SessionListComponent,
+  DurationPipe
+} from './events/index';
+import { EventsAppComponent } from './events-app.component';
+import { AuthService } from './user/auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+declare let toastr: Toastr;
 
 @NgModule({
   imports: [
@@ -28,7 +31,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     RouterModule.forRoot(appRoutes),
     FormsModule,
     ReactiveFormsModule
-    //RouterModule.forRoot(appRoutes, { enableTracing: true }) //debug
+    // RouterModule.forRoot(appRoutes, { enableTracing: true }) //debug
   ],
   declarations: [
     EventsAppComponent,
@@ -40,14 +43,15 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     Error404Component,
     CreateSessionComponent,
     SessionListComponent,
-    CollapsibleWellComponent
+    CollapsibleWellComponent,
+    DurationPipe
   ],
   providers: [
     EventService,
-    ToastrService,
+    { provide: 'TOASTR_TOKEN', useValue: toastr },
     EventRouteActivator,
     EventsListResolver,
-    { provide: "canDeactivateCreateEvent", useValue: checkDirtyState },
+    { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
     AuthService
   ],
   bootstrap: [EventsAppComponent]
@@ -61,7 +65,7 @@ export class AppModule {}
 export function checkDirtyState(component: CreateEventComponent) {
   if (component.isDirty) {
     return window.confirm(
-      "You have not saved this event, do you really need to cancel?"
+      'You have not saved this event, do you really need to cancel?'
     );
   }
   return true;

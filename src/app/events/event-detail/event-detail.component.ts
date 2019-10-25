@@ -23,6 +23,8 @@ import { IEvent, ISession } from "../shared";
 export class EventDetailComponent {
   event: IEvent;
   addMode: boolean;
+  filterBy: string = 'all';
+  sortBy: string = 'votes';
 
   constructor(
     @Inject(EventService) private eventService: EventService,
