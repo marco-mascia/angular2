@@ -23,7 +23,7 @@ import { EventsAppComponent } from './events-app.component';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-declare let toastr: Toastr;
+let toastr: Toastr = window['toastr'];
 
 @NgModule({
   imports: [
@@ -48,11 +48,12 @@ declare let toastr: Toastr;
   ],
   providers: [
     EventService,
-    { provide: 'TOASTR_TOKEN', useValue: toastr },
     EventRouteActivator,
     EventsListResolver,
     { provide: 'canDeactivateCreateEvent', useValue: checkDirtyState },
-    AuthService
+    AuthService,
+    { provide: TOASTR_TOKEN, useValue: toastr }
+
   ],
   bootstrap: [EventsAppComponent]
 })
