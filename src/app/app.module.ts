@@ -5,7 +5,7 @@ import { TOASTR_TOKEN, Toastr } from './common/toastr.service';
 import { CollapsibleWellComponent } from './common/collapsible-well-component/collapsible-well.component';
 import { RouterModule } from '@angular/router';
 import { appRoutes } from 'src/routes';
-
+import { SampleModule } from './sample/sample.module';
 import { Error404Component } from './errors/404.component';
 import {
   EventDetailComponent,
@@ -19,10 +19,10 @@ import {
   SessionListComponent,
   DurationPipe
 } from './events/index';
+
 import { EventsAppComponent } from './events-app.component';
 import { AuthService } from './user/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 let toastr: Toastr = window['toastr'];
 
 @NgModule({
@@ -30,7 +30,8 @@ let toastr: Toastr = window['toastr'];
     BrowserModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SampleModule
     // RouterModule.forRoot(appRoutes, { enableTracing: true }) //debug
   ],
   declarations: [

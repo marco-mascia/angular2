@@ -34,28 +34,28 @@ export class EventService {
     EVENTS[index] = event;
   }
 
-  searchSessions(searchTerm: string): Observable<any[]>  {
-    const term = searchTerm.toLocaleLowerCase();
-    let results: ISession[] = [];
+  searchSessions(searchTerm: string): any  {
+    // const term = searchTerm.toLocaleLowerCase();
+    // let results: ISession[] = [];
 
-    EVENTS.forEach(event => {
-      let matchingSessions = event.sessions.filter(session =>
-          session.name.toLocaleLowerCase().indexOf(term) > -1);
+    // EVENTS.forEach(event => {
+    //   let matchingSessions = event.sessions.filter(session =>
+    //       session.name.toLocaleLowerCase().indexOf(term) > -1);
 
-      matchingSessions = matchingSessions.map((session: any) => {
-            session.eventId = event.id;
-            return session;
-          });
-      results = results.concat(matchingSessions);
-      });
+    //   matchingSessions = matchingSessions.map((session: any) => {
+    //         session.eventId = event.id;
+    //         return session;
+    //       });
+    //   results = results.concat(matchingSessions);
+    //   });
 
-    const emitter = new EventEmitter(true);
+    // const emitter = new EventEmitter();
 
-    setTimeout(() => {
-        emitter.emit(results);
-      }, 100);
+    // setTimeout(() => {
+    //     emitter.emit(results);
+    //   }, 100);
 
-    return emitter;
+    // return emitter;
     }
 }
 
