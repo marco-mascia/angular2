@@ -1,0 +1,4 @@
+<div>
+    <h1>NgFor Sample</h1>
+    <child-component *ngFor="let item in items" [event]="item" (eventClick)="handleEventClicked($event)"></child-component>
+</div>
