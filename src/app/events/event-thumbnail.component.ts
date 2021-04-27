@@ -19,7 +19,6 @@ export class EventThumbnailComponent {
   someProperty: any = "Qualcosa";
 
   handleClickMe() {
-    console.log('handleClickMe');
     this.eventClick.emit(this.event.name);
   }
 
